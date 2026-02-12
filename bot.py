@@ -241,12 +241,16 @@ for user_id, favs in STATE.get("favorites", {}).items():
 SOCIALS_INFO = (
     "🌟 Follow for more Islamic reminders:\n\n"
     "Telegram: https://t.me/noorvibes_light\n"
+    "LinkedIn: https://www.linkedin.com/in/yusuf-mohammed-5272572b6/\n"
+    "Instagram: https://instagram.com/kebilad_7488\n\n"
     "May Allah reward you 🤍"
 )
 
 CONTACT_INFO = (
     "📬 *Contact Admin:*\n\n"
-    "Telegram: @yourusername\n"
+    "Telegram: [Yusuf Mohammed](https://t.me/Cs1At07)\n"
+    "Instagram: [Yusuf Mohammed](https://instagram.com/kebilad_7488)\n\n"
+    "Email:[ym47484988@gmail.com](mailto:ym47484988@gmail.com)\n\n"
     "For support, feedback, or suggestions."
 )
 
@@ -280,7 +284,7 @@ def get_main_menu_keyboard(lang="en"):
         ],
         [
             InlineKeyboardButton("📬 Contact", callback_data="menu_contacts"),
-            InlineKeyboardButton("🧹 Clear", callback_data="menu_clear"),
+            InlineKeyboardButton("🌟 Follow Us", callback_data="menu_socials"),
         ],
     ])
 
@@ -700,9 +704,12 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⬅️ Back", callback_data="menu_main")]])
         )
 
-    elif data == "menu_clear":
-        if query.message:
-            await query.message.delete()
+    elif data == "menu_socials":
+        await query.edit_message_text(
+            SOCIALS_INFO,
+            parse_mode="Markdown",
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⬅️ Back", callback_data="menu_main")]])
+        )
 
 async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     track_user(context, update.effective_chat.id)
