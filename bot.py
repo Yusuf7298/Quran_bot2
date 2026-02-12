@@ -20,7 +20,10 @@ from telegram.ext import (
 # ==================== CONFIG ====================
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-PRIVATE_CHANNEL_ID = -1003806159829 # Your private channel ID 380
+RENDER_EXTERNAL_URL = os.getenv("RENDER_EXTERNAL_URL")  # Set by Render
+PORT = int(os.getenv("PORT", 10000))
+
+PRIVATE_CHANNEL_ID = -1003806159829  # Your private channel ID
 ADMIN_IDS = {5726141414}  # Replace with your Telegram user ID(s)
 
 DATA_DIR = "data"
@@ -145,7 +148,7 @@ TEXTS = {
         "ar": "📖 *آية اليوم*",
         "am": "📖 *የዛሬ አያ*",
         "so": "📖 *Aayadda Maanta*",
-        "om": "📖 *Aayaa Guyyaa*"
+        "om": "📖 *Aayaa Guyyaa*    "
     },
     "language": {
         "en": "🌐 *Choose your language:*",
@@ -238,6 +241,7 @@ for user_id, lang in STATE.get("languages", {}).items():
     USER_LANG[int(user_id)] = lang
 for user_id, favs in STATE.get("favorites", {}).items():
     USER_FAVORITES[int(user_id)] = set(favs)
+
 SOCIALS_INFO = (
     "🌟 Follow for more Islamic reminders:\n\n"
     "Telegram: https://t.me/noorvibes_light\n"
@@ -499,7 +503,6 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if query.message:
         track_user(context, query.message.chat_id)
 
-    # -------- Main Menu --------
     if data == "menu_main":
         await query.edit_message_text(
             TEXTS["menu"][lang],
@@ -739,11 +742,15 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE):
     logger.exception("Unhandled error: %s", context.error)
 
-# ==================== MAIN ====================
+# ==================== MAIN (WEBHOOK) ====================
 
 def main():
     if not BOT_TOKEN or not BOT_TOKEN.strip():
-        logger.error("BOT_TOKEN is missing. Set it in the .env file before starting the bot.")
+        logger.error("BOT_TOKEN is missing. Set it in the environment variables.")
+        raise SystemExit(1)
+
+    if not RENDER_EXTERNAL_URL:
+        logger.error("RENDER_EXTERNAL_URL is missing. Add it in Render environment variables.")
         raise SystemExit(1)
 
     application = Application.builder().token(BOT_TOKEN).build()
@@ -773,10 +780,20 @@ def main():
     application.add_error_handler(error_handler)
 
     # Job Queue (Daily Reminder at 7 AM)
-    application.job_queue.run_daily(send_daily_reminder, time(hour=7, minute=0))
+    if application.job_queue:
+        application.job_queue.run_daily(send_daily_reminder, time(hour=7, minute=0))
+    else:
+        logger.warning("⚠️ JobQueue not available — daily reminders disabled.")
 
-    print("✅ Quran Audience Bot is running...")
-    application.run_polling()
+    print("🚀 Quran Audience Bot is running via webhook...")
+
+    application.run_webhook(
+        listen="0.0.0.0",
+        port=PORT,
+        url_path=BOT_TOKEN,
+        webhook_url=f"{RENDER_EXTERNAL_URL}/{BOT_TOKEN}"
+    )
 
 if __name__ == "__main__":
     main()
+
