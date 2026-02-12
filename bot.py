@@ -17,14 +17,13 @@ from telegram.ext import (
     MessageHandler, ContextTypes, filters
 )
 
-# ==================== CONFIG ====================
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-RENDER_EXTERNAL_URL = os.getenv("RENDER_EXTERNAL_URL")  # Set by Render
+RENDER_EXTERNAL_URL = os.getenv("RENDER_EXTERNAL_URL")
 PORT = int(os.getenv("PORT", 10000))
 
-PRIVATE_CHANNEL_ID = -1003806159829  # Your private channel ID
-ADMIN_IDS = {5726141414}  # Replace with your Telegram user ID(s)
+PRIVATE_CHANNEL_ID = -1003806159829
+ADMIN_IDS = {5726141414}
 
 DATA_DIR = "data"
 STATE_FILE = os.path.join(DATA_DIR, "bot_state.json")
@@ -34,14 +33,11 @@ QARI_COLUMNS = 2
 
 os.makedirs(DATA_DIR, exist_ok=True)
 
-# ==================== LOGGING ====================
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     level=logging.INFO
 )
 logger = logging.getLogger(__name__)
-
-# ==================== DATA ====================
 
 SURAH_NAMES = [
     "Al-Fatihah", "Al-Baqarah", "Aal-E-Imran", "An-Nisa", "Al-Ma'idah",
@@ -254,8 +250,6 @@ CONTACT_INFO = (
     "For support, feedback, or suggestions."
 )
 
-# ==================== KEYBOARDS ====================
-
 def build_button_rows(buttons, columns):
     return [buttons[i:i+columns] for i in range(0, len(buttons), columns)]
 
@@ -335,8 +329,6 @@ def get_language_keyboard():
     rows = build_button_rows(buttons, 2)
     rows.append([InlineKeyboardButton("⬅️ Back", callback_data="menu_main")])
     return InlineKeyboardMarkup(rows)
-
-# ==================== COMMANDS ====================
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
@@ -477,8 +469,6 @@ async def export_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     buffer.name = "bot_export.json"
     await update.message.reply_document(document=buffer, filename="bot_export.json")
 
-# ==================== DAILY REMINDER ====================
-
 async def send_daily_reminder(context: ContextTypes.DEFAULT_TYPE):
     ayah_ar, ayah_en, ref = random.choice(AYAH_OF_THE_DAY)
     text = (
@@ -491,8 +481,6 @@ async def send_daily_reminder(context: ContextTypes.DEFAULT_TYPE):
             await context.bot.send_message(chat_id, text, parse_mode="Markdown")
         except:
             pass
-
-# ==================== CALLBACK HANDLER ====================
 
 async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
@@ -716,8 +704,6 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if query.message:
             await query.message.delete()
 
-# ==================== TEXT HANDLER ====================
-
 async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     track_user(context, update.effective_chat.id)
     text = update.message.text.lower()
@@ -737,12 +723,8 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "🤍 Please use /menu to navigate the bot."
         )
 
-# ==================== ERROR HANDLER ====================
-
 async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE):
     logger.exception("Unhandled error: %s", context.error)
-
-# ==================== MAIN (WEBHOOK) ====================
 
 def main():
     if not BOT_TOKEN or not BOT_TOKEN.strip():
@@ -755,7 +737,6 @@ def main():
 
     application = Application.builder().token(BOT_TOKEN).build()
 
-    # Commands
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("menu", menu))
     application.add_handler(CommandHandler("help", help_command))
@@ -770,16 +751,12 @@ def main():
     application.add_handler(CommandHandler("stats", stats))
     application.add_handler(CommandHandler("export", export_command))
 
-    # Callback handler
     application.add_handler(CallbackQueryHandler(handle_callback))
 
-    # Text fallback
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, text_handler))
 
-    # Global error handler
     application.add_error_handler(error_handler)
 
-    # Job Queue (Daily Reminder at 7 AM)
     if application.job_queue:
         application.job_queue.run_daily(send_daily_reminder, time(hour=7, minute=0))
     else:
