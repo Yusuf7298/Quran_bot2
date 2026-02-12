@@ -1,3 +1,4 @@
+
 import io
 import json
 import logging
@@ -240,9 +241,9 @@ for user_id, favs in STATE.get("favorites", {}).items():
 
 SOCIALS_INFO = (
     "🌟 Follow for more Islamic reminders:\n\n"
-    "Telegram: https://t.me/noorvibes_light\n"
-    "LinkedIn: https://www.linkedin.com/in/yusuf-mohammed-5272572b6/\n"
-    "Instagram: https://instagram.com/kebilad_7488\n\n"
+    "Telegram: [NoorVibes ☪️](https://t.me/noorvibes_light)\n"
+    "LinkedIn: [Yusuf Mohammed](https://www.linkedin.com/in/yusuf-mohammed-5272572b6)\n"
+    "Instagram: [Yusuf Mohammed](https://instagram.com/kebilad_7488)\n\n"
     "May Allah reward you 🤍"
 )
 
@@ -780,4 +781,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
