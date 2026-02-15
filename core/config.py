@@ -307,7 +307,7 @@ TEXTS = {
         )
     },
     "menu_ready": {
-        "en": "What would you like to choose?",
+        "en": "What would you like to choose ?",
         "ar": "ماذا تود أن تختار؟",
         "am": "ምን መምረጥ ትፈልጋለህ?",
         "so": "Maxaad rabtaa inaad doorato?",

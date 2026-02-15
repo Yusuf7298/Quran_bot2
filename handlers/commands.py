@@ -24,7 +24,7 @@ from core.state import (
 async def send_reply_menu(update: Update):
     lang = USER_LANG[update.effective_user.id]
     await update.effective_chat.send_message(
-        "Main menu is Ready",
+        t("menu_ready", lang),
         reply_markup=get_reply_menu(lang)
     )
 
