@@ -7,7 +7,7 @@ from telegram.ext import (
     MessageHandler,
     filters
 )
-from core.config import BOT_TOKEN
+from core.config import BOT_TOKEN, PORT, WEBHOOK_PATH, WEBHOOK_URL
 from core.reminders import schedule_all_reminders
 from core.state import load_state_into
 from handlers.admin import admin_command, broadcast, customers_command, export_command, stats
@@ -39,6 +39,9 @@ logger = logging.getLogger(__name__)
 def main():
     if not BOT_TOKEN or not BOT_TOKEN.strip():
         logger.error("BOT_TOKEN is missing. Set it in the environment variables.")
+        raise SystemExit(1)
+    if not WEBHOOK_URL or not WEBHOOK_URL.strip():
+        logger.error("WEBHOOK_URL is missing. Set it in the environment variables.")
         raise SystemExit(1)
 
     load_state_into()
@@ -72,8 +75,17 @@ def main():
     else:
         logger.warning("⚠️ JobQueue not available — daily reminders disabled.")
 
-    print("🚀 Quran Audience Bot is running via polling...")
-    application.run_polling()
+    webhook_path = (WEBHOOK_PATH or BOT_TOKEN).strip("/")
+    base_url = WEBHOOK_URL.rstrip("/")
+    webhook_url = f"{base_url}/{webhook_path}"
+
+    print("🚀 Quran Audience Bot is running via webhook...")
+    application.run_webhook(
+        listen="0.0.0.0",
+        port=PORT,
+        url_path=webhook_path,
+        webhook_url=webhook_url,
+    )
 
 
 if __name__ == "__main__":

@@ -5,8 +5,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+WEBHOOK_URL = os.getenv("WEBHOOK_URL")
+WEBHOOK_PATH = os.getenv("WEBHOOK_PATH")
 RENDER_EXTERNAL_URL = os.getenv("RENDER_EXTERNAL_URL")
-PORT = int(os.getenv("PORT", 10000))
+PORT = int(os.getenv("PORT", 8080))
 
 # Global reminder time in HH:MM for all users.
 REMINDER_GLOBAL_TIME = os.getenv("REMINDER_GLOBAL_TIME", "10:00")
