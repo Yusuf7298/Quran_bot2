@@ -75,15 +75,19 @@ RECITERS_DATA = {
     "r10": {"name": "Mishary Rashid Alafasy", "start_msg_id": 3},
     "r11": {"name": "Mohammed Al-Luhaidan", "start_msg_id": 464},
     "r12": {"name": "Mohammad Saleh Alim Shah", "start_msg_id": 1729},
-    "r13": {"name": "Sheikh Maher Al-Muaiqly", "start_msg_id": 579},
-    "r14": {"name": "Sheikh Mohammed Ayyub", "start_msg_id": 923},
-    "r15": {"name": "Sheikh Abdul Wadood Haneef", "start_msg_id": 1959},
-    "r16": {"name": "Sheikh Adel Rayan", "start_msg_id": 1499},
-    "r17": {"name": "Sheikh Idris Abkar", "start_msg_id": 2649},
-    "r18": {"name": "Sheikh Muhammad Jibril", "start_msg_id": 2189},
-    "r19": {"name": "Sheikh Saud Al-Shuraim", "start_msg_id": 693},
-    "r20": {"name": "Sheikh Yasser Al-Dosari", "start_msg_id": 2074},
-    "r21": {"name": "Yasser Al-Qureshi", "start_msg_id": 808},
+    "r13": {"name": "Sheikh Salah Al-Budair", "start_msg_id": 3225},
+    "r14": {"name": "Sheikh Maher Al-Muaiqly", "start_msg_id": 579},
+    "r15": {"name": "Sheikh Mohammed Ayyub", "start_msg_id": 923},
+    "r16": {"name": "Sheikh Abdul Wadood Haneef", "start_msg_id": 1959},
+    "r17": {"name": "Sheikh Adel Rayan", "start_msg_id": 1499},
+    "r18": {"name": "Sheikh Idris Abkar", "start_msg_id": 2649},
+    "r19": {"name": "Sheikh Muhammad Jibril", "start_msg_id": 2189},
+    "r20": {"name": "Sheikh Saud Al-Shuraim", "start_msg_id": 693},
+    "r21": {"name": "Sheikh Yasser Al-Dosari", "start_msg_id": 2074},
+    "r22": {"name": "Waleed Al Naehi", "start_msg_id": 3326},
+    "r23": {"name": "Yasser Al-Qureshi", "start_msg_id": 808},
+    "r24": {"name": "Yahya Hawwa ", "start_msg_id": 2995},
+    "r25": {"name": "Yassen Al-Jazir", "start_msg_id": 3110},
 }
 
 
@@ -303,12 +307,12 @@ TEXTS = {
         )
     },
     "menu_ready": {
-        "en": "Menu ready.",
-        "ar": "تم إعداد القائمة.",
-        "am": "ማውጫው ተዘጋጅቷል።",
-        "so": "Menu-ga waa diyaar.",
-        "om": "Menuun qophaa'eera.",
-        "tr": "Menu hazir."
+        "en": "What would you like to choose?",
+        "ar": "ماذا تود أن تختار؟",
+        "am": "ምን መምረጥ ትፈልጋለህ?",
+        "so": "Maxaad rabtaa inaad doorato?",
+        "om": "Maal filachuu barbaadda?",
+        "tr": "Ne secmek istersin?"
     },
     "bot_alive": {
         "en": "✅ Bot is alive.",
@@ -351,12 +355,12 @@ TEXTS = {
         "tr": "❌ Admin komutlarini kullanma yetkiniz yok."
     },
     "admin_dashboard": {
-        "en": "🛠️ *Admin Dashboard*\n\n/broadcast — Send message to all users\n/stats — View bot stats\n/customers — List customers\n/export — Download bot data\n",
-        "ar": "🛠️ *لوحة المشرف*\n\n/broadcast — إرسال رسالة لكل المستخدمين\n/stats — عرض إحصائيات البوت\n/customers — قائمة العملاء\n/export — تنزيل بيانات البوت\n",
-        "am": "🛠️ *የአስተዳዳሪ ዳሽቦርድ*\n\n/broadcast — ለሁሉም ተጠቃሚዎች መልእክት ላክ\n/stats — የቦት ስታት አሳይ\n/customers — ደንበኞችን ዝርዝር\n/export — የቦት ውሂብ አውርድ\n",
-        "so": "🛠️ *Gudiga Admin*\n\n/broadcast — U dir fariin dhammaan isticmaalayaasha\n/stats — Muuji tirakoobka bot-ka\n/customers — Liiska macaamiisha\n/export — Soo dejiso xogta bot-ka\n",
-        "om": "🛠️ *Dashboard Admin*\n\n/broadcast — Ergaa fayyadamtoota hundaaf ergi\n/stats — Istaatistika bot agarsiisi\n/customers — Tarreeffama maamiltoota\n/export — Odeeffannoo bot buusi\n",
-        "tr": "🛠️ *Admin Paneli*\n\n/broadcast — Tum kullanicilara mesaj gonder\n/stats — Bot istatistiklerini gor\n/customers — Musteri listesini goster\n/export — Bot verisini indir\n"
+        "en": "🛠️ *Admin Dashboard*",
+        "ar": "🛠️ *لوحة المشرف*",
+        "am": "🛠️ *የአስተዳዳሪ ዳሽቦርድ*",
+        "so": "🛠️ *Gudiga Admin*",
+        "om": "🛠️ *Dashboard Admin*",
+        "tr": "🛠️ *Admin Paneli*"
     },
     "peace_response": {
         "en": "وَعَلَيْكُمُ السَّلَامُ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ\nPeace and Allah's mercy and blessings be upon you.",
