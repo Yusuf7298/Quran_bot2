@@ -48,7 +48,7 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         await query.answer()
     except TimedOut:
-        # Network hiccup while acknowledging callback; continue handling.
+                                                                         
         pass
     data = query.data
     user_id = query.from_user.id

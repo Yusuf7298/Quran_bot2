@@ -94,7 +94,7 @@ def track_user(context: ContextTypes.DEFAULT_TYPE, chat_id: int, user=None):
     )
 
 
-# Initialization helper so bot.py can load state into provided user_lang.
+                                                                         
 
 def load_state_into():
     init_db()

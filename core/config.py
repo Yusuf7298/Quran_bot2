@@ -9,7 +9,7 @@ RENDER_EXTERNAL_URL = os.getenv("RENDER_EXTERNAL_URL")
 PORT = int(os.getenv("PORT", 10000))
 
 # Global reminder time in HH:MM for all users.
-REMINDER_GLOBAL_TIME = os.getenv("REMINDER_GLOBAL_TIME", "06:30")
+REMINDER_GLOBAL_TIME = os.getenv("REMINDER_GLOBAL_TIME", "10:00")
 
 # Approximate timezone offsets (minutes) by language.
 REMINDER_TZ_BY_LANG = {
@@ -91,6 +91,59 @@ AYAH_OF_THE_DAY = [
     ("إِنَّ مَعَ الْعُسْرِ يُسْرًا", "Indeed, with hardship comes ease.", "94:6"),
     ("فَاذْكُرُونِي أَذْكُرْكُمْ", "So remember Me; I will remember you.", "2:152"),
     ("وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا", "Whoever fears Allah, He will make a way out for him.", "65:2"),
+    ("اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ", "Allah is the Light of the heavens and the earth.", "24:35"),
+    ("وَقُل رَّبِّ زِدْنِي عِلْمًا", "And say: My Lord, increase me in knowledge.", "20:114"),
+    ("إِنَّ اللَّهَ مَعَ الصَّابِرِينَ", "Indeed, Allah is with the patient.", "2:153"),
+    ("وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ", "And He is over all things competent.", "57:2"),
+    ("رَّبِّ اشْرَحْ لِي صَدْرِي", "My Lord, expand for me my chest.", "20:25"),
+    ("وَتَوَكَّلْ عَلَى اللَّهِ", "And rely upon Allah.", "33:3"),
+    ("إِنَّ اللَّهَ غَفُورٌ رَّحِيمٌ", "Indeed, Allah is Forgiving and Merciful.", "2:173"),
+    ("وَاللَّهُ خَيْرُ الرَّازِقِينَ", "And Allah is the best of providers.", "62:11"),
+    ("إِنَّ اللَّهَ يُحِبُّ الْمُحْسِنِينَ", "Indeed, Allah loves those who do good.", "2:195"),
+    ("وَاللَّهُ سَمِيعٌ عَلِيمٌ", "And Allah is Hearing and Knowing.", "2:137"),
+    ("رَّبَّنَا لَا تُزِغْ قُلُوبَنَا", "Our Lord, let not our hearts deviate.", "3:8"),
+    ("إِنَّ رَبِّي قَرِيبٌ مُّجِيبٌ", "Indeed, my Lord is Near and Responsive.", "11:61"),
+    ("وَاصْبِرْ وَمَا صَبْرُكَ إِلَّا بِاللَّهِ", "And be patient, and your patience is only through Allah.", "16:127"),
+    ("إِنَّ اللَّهَ يُحِبُّ التَّوَّابِينَ", "Indeed, Allah loves those who repent.", "2:222"),
+    ("وَاللَّهُ وَلِيُّ الْمُؤْمِنِينَ", "And Allah is the ally of the believers.", "3:68"),
+    ("إِنَّ رَحْمَتَ اللَّهِ قَرِيبٌ مِّنَ الْمُحْسِنِينَ", "Indeed, the mercy of Allah is near to the doers of good.", "7:56"),
+    ("وَاللَّهُ خَيْرُ الْحَافِظِينَ", "And Allah is the best of protectors.", "12:64"),
+    ("إِنَّ اللَّهَ لَا يُضِيعُ أَجْرَ الْمُحْسِنِينَ", "Indeed, Allah does not allow the reward of the good to be lost.", "9:120"),
+    ("وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ", "And He is with you wherever you are.", "57:4"),
+    ("فَإِنَّ مَعَ الْعُسْرِ يُسْرًا", "For indeed, with hardship comes ease.", "94:5"),
+    ("وَاللَّهُ يُحِبُّ الصَّابِرِينَ", "And Allah loves the patient.", "3:146"),
+    ("رَّبِّ اغْفِرْ لِي وَلِوَالِدَيَّ", "My Lord, forgive me and my parents.", "14:41"),
+    ("إِنَّ اللَّهَ بِالنَّاسِ لَرَءُوفٌ رَّحِيمٌ", "Indeed, Allah is Kind and Merciful to people.", "2:143"),
+    ("وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ", "And my success is only through Allah.", "11:88"),
+    ("إِنَّ اللَّهَ مَعَنَا", "Indeed, Allah is with us.", "9:40"),
+    ("رَبَّنَا تَقَبَّلْ مِنَّا", "Our Lord, accept from us.", "2:127"),
+    ("وَاللَّهُ عَلِيمٌ حَكِيمٌ", "And Allah is Knowing and Wise.", "4:26"),
+    ("إِنَّ اللَّهَ لَطِيفٌ خَبِيرٌ", "Indeed, Allah is Subtle and Aware.", "31:16"),
+    ("وَاللَّهُ غَالِبٌ عَلَىٰ أَمْرِهِ", "And Allah is predominant over His affair.", "12:21"),
+    ("إِنَّ اللَّهَ يُحِبُّ الْمُتَوَكِّلِينَ", "Indeed, Allah loves those who rely upon Him.", "3:159"),
+    ("رَّبِّ يَسِّرْ وَلَا تُعَسِّرْ", "My Lord, make it easy and do not make it difficult.", "Adapted supplication"),
+    ("وَإِلَى اللَّهِ تُرْجَعُ الْأُمُورُ", "And to Allah all matters are returned.", "2:210"),
+    ("إِنَّ اللَّهَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ", "Indeed, Allah is over all things competent.", "2:20"),
+    ("رَّبِّ زِدْنِي عِلْمًا", "My Lord, increase me in knowledge.", "20:114"),
+    ("وَاللَّهُ يُحِبُّ الْمُقْسِطِينَ", "And Allah loves those who act justly.", "5:42"),
+    ("إِنَّ رَبِّي لَسَمِيعُ الدُّعَاءِ", "Indeed, my Lord is the Hearer of supplication.", "14:39"),
+    ("وَهُوَ خَيْرُ الْحَاكِمِينَ", "And He is the best of judges.", "7:87"),
+    ("إِنَّ اللَّهَ سَرِيعُ الْحِسَابِ", "Indeed, Allah is swift in account.", "3:199"),
+    ("رَّبَّنَا أَفْرِغْ عَلَيْنَا صَبْرًا", "Our Lord, pour upon us patience.", "2:250"),
+    ("وَاللَّهُ يَعْلَمُ وَأَنتُمْ لَا تَعْلَمُونَ", "And Allah knows, while you do not know.", "2:216"),
+    ("إِنَّ اللَّهَ هُوَ الرَّزَّاقُ", "Indeed, Allah is the Provider.", "51:58"),
+    ("فَاصْبِرْ إِنَّ وَعْدَ اللَّهِ حَقٌّ", "So be patient; indeed, the promise of Allah is truth.", "30:60"),
+    ("وَاللَّهُ خَيْرُ الْمَاكِرِينَ", "And Allah is the best of planners.", "3:54"),
+    ("رَبَّنَا عَلَيْكَ تَوَكَّلْنَا", "Our Lord, upon You we rely.", "60:4"),
+    ("إِنَّ اللَّهَ عَزِيزٌ حَكِيمٌ", "Indeed, Allah is Exalted in Might and Wise.", "48:7"),
+    ("وَاصْفَحِ الصَّفْحَ الْجَمِيلَ", "And overlook with gracious forgiveness.", "15:85"),
+    ("إِنَّ اللَّهَ يُحِبُّ الْمُتَّقِينَ", "Indeed, Allah loves the righteous.", "3:76"),
+    ("وَهُوَ أَرْحَمُ الرَّاحِمِينَ", "And He is the Most Merciful of the merciful.", "12:64"),
+    ("رَّبَّنَا لَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ", "Our Lord, do not burden us with what we cannot bear.", "2:286"),
+    ("إِنَّ مَعَ الْعُسْرِ يُسْرًا", "Indeed, with hardship comes ease.", "94:6"),
+    ("وَاذْكُر رَّبَّكَ إِذَا نَسِيتَ", "And remember your Lord when you forget.", "18:24"),
+    ("وَاللَّهُ رَءُوفٌ بِالْعِبَادِ", "And Allah is Kind to His servants.", "3:30"),
+    ("إِنَّ اللَّهَ لَا يُخْلِفُ الْمِيعَادَ", "Indeed, Allah does not break His promise.", "3:9"),
 ]
 
 LANGUAGES = {

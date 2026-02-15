@@ -1,6 +1,6 @@
 from datetime import date
 
-# Approximate Ramadan ranges (Gregorian) for upcoming years.
+                                                            
 RAMADAN_RANGES = [
     (date(2025, 2, 28), date(2025, 3, 29)),
     (date(2026, 2, 17), date(2026, 3, 18)),
