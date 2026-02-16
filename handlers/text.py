@@ -215,6 +215,26 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await help_command(update, context)
         return
 
+    if matches_label(text, "btn_contact"):
+        await update.message.reply_text(
+            t("contacts", lang),
+            parse_mode="Markdown",
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton(t("btn_back", lang), callback_data="menu_main")]
+            ])
+        )
+        return
+
+    if matches_label(text, "btn_socials"):
+        await update.message.reply_text(
+            t("socials", lang),
+            parse_mode="Markdown",
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton(t("btn_back", lang), callback_data="menu_main")]
+            ])
+        )
+        return
+
     if matches_label(text, "btn_support"):
         await update.message.reply_text(
             t("socials", lang),

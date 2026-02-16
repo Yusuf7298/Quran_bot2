@@ -409,6 +409,20 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(t("btn_back", lang), callback_data="menu_main")]])
         )
 
+    elif data == "menu_contact":
+        await query.edit_message_text(
+            t("contacts", lang),
+            parse_mode="Markdown",
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(t("btn_back", lang), callback_data="menu_main")]])
+        )
+
+    elif data == "menu_socials":
+        await query.edit_message_text(
+            t("socials", lang),
+            parse_mode="Markdown",
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(t("btn_back", lang), callback_data="menu_main")]])
+        )
+
     elif data == "menu_support":
         await query.edit_message_text(
             t("socials", lang),

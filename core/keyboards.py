@@ -30,6 +30,10 @@ def get_main_menu_keyboard(lang="en", user_id=None):
             InlineKeyboardButton(t("btn_help", lang), callback_data="menu_help"),
         ],
         [
+            InlineKeyboardButton(t("btn_contact", lang), callback_data="menu_contact"),
+            InlineKeyboardButton(t("btn_socials", lang), callback_data="menu_socials"),
+        ],
+        [
             InlineKeyboardButton(t("btn_support", lang), callback_data="menu_support"),
             InlineKeyboardButton(t("btn_feedback", lang), callback_data="menu_feedback"),
         ],
